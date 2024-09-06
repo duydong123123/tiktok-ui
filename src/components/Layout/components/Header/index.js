@@ -30,7 +30,7 @@ const MENU_ITEMS = [
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
         title: 'Feedback and help',
-        to: '/feedback',
+        // to: '/feedback',
     },
     {
         icon: <FontAwesomeIcon icon={faKeyboard} />,
