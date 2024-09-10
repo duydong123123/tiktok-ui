@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Children, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -7,7 +7,6 @@ import {
     faEarthAsia,
     faEllipsisVertical,
     faKeyboard,
-    faLanguage,
     faMagnifyingGlass,
     faSpinner,
 } from '@fortawesome/free-solid-svg-icons';
@@ -24,8 +23,45 @@ const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
     {
-        icon: <FontAwesomeIcon icon={faLanguage} />,
+        icon: <FontAwesomeIcon icon={faEarthAsia} />,
         title: 'English',
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    code: 'en',
+                    title: 'English', // United States, Canada, Australia, etc.
+                },
+                {
+                    code: 'vi',
+                    title: 'Tiếng Việt', // Vietnam
+                },
+                {
+                    code: 'fi',
+                    title: 'Suomi', // Finland
+                },
+                {
+                    code: 'no',
+                    title: 'Norsk', // Norway
+                },
+                {
+                    code: 'se',
+                    title: 'Svenska', // Sweden
+                },
+                {
+                    code: 'dk',
+                    title: 'Dansk', // Denmark
+                },
+                {
+                    code: 'ch',
+                    title: 'Schweizerdeutsch', // Switzerland (Swiss German)
+                },
+                {
+                    code: 'nl',
+                    title: 'Nederlands', // Netherlands
+                },
+            ],
+        },
     },
     {
         icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -46,6 +82,16 @@ function Header() {
             setSearchResult([]);
         }, 0);
     }, []);
+
+    //handle logic
+    const handleMenuChange = (menuItem) => {
+        switch (menuItem.type) {
+            case 'language':
+                // Handle change language
+                break;
+            default:
+        }
+    };
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -80,7 +126,7 @@ function Header() {
                     <Button text>Upload</Button>
                     <Button primary>Log in</Button>
 
-                    <Menu items={MENU_ITEMS}>
+                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
                         <button className={cx('more-btn')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>
